@@ -1,0 +1,12 @@
+﻿<Window x:Class="CSharpToIronRuby.RulesEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Window1" Height="340" Width="713">
+    <Grid Height="293" Width="657">
+        <Button Content="Save Rule" Height="55" HorizontalAlignment="Left" Margin="154,209,0,0" Name="saveRuleButton" VerticalAlignment="Top" Width="175" Click="button1_Click" />
+        <TextBox Height="111" HorizontalAlignment="Left" Margin="154,92,0,0" Name="ruleText" VerticalAlignment="Top" Width="459" Text="puts &quot;Order: #{order.to_s} failed: Rule 1&quot; unless order.price &gt; 10" />
+        <TextBox Height="29" HorizontalAlignment="Left" Margin="154,42,0,0" Name="nameText" VerticalAlignment="Top" Width="190" Text="rule_1" />
+        <Label Content="Rule Name" Height="29" HorizontalAlignment="Left" Margin="12,40,0,0" Name="label1" VerticalAlignment="Top" Width="126" />
+        <Label Content="Rule" Height="28" HorizontalAlignment="Left" Margin="18,92,0,0" Name="label2" VerticalAlignment="Top" Width="120" />
+    </Grid>
+</Window>
