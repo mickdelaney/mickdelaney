@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI;
 
-namespace MD.Samples.CQRS.Order.WebApp.Controllers
+namespace MD.Samples.CQRS.Orders.WebApp.Controllers
 {
 
     [HandleError]

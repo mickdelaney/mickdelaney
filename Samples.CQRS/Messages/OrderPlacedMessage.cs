@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NServiceBus;
 
-namespace MD.Samples.CQRS.Order.Messages
+namespace MD.Samples.CQRS.Orders.Messages
 {
     public class OrderPlacedMessage : IMessage
     {

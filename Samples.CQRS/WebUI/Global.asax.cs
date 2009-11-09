@@ -8,9 +8,13 @@ using NServiceBus;
 using Castle.Windsor;
 using MD.Mvc2.WebApp;
 using MD.Mvc2.WebApp.Core;
-using MD.Samples.CQRS.Order.WebApp.Controllers;
+using MD.Samples.CQRS.Orders.WebApp.Controllers;
+using NHibernate;
+using MD.Samples.CQRS.Infrastructure;
+using MD.Samples.CQRS.Orders.Domain;
+using Castle.MicroKernel.Registration;
 
-namespace MD.Samples.CQRS.Order.WebApp
+namespace MD.Samples.CQRS.Orders.WebApp
 {
     public class MvcApplication : HttpApplication, IContainerAccessor
     {
@@ -54,7 +58,13 @@ namespace MD.Samples.CQRS.Order.WebApp
         {
             _container = new WindsorContainer();
             _container.RegisterControllers(typeof(HomeController).Assembly);
-    
+
+
+            ISessionFactory sessionFactory = SqliteConfigurator.GetSessionFactory(typeof(OrderRepository).Assembly);
+            _container.Register(Component.For<ISessionFactory>().Instance(sessionFactory));
+                           
+
+
             var factory = new WindsorControllerFactory(Container);
             ControllerBuilder.Current.SetControllerFactory(factory);
         }

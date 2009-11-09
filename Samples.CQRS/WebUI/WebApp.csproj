@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{f85e285d-a4e0-4152-9332-ab1d724d3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MD.Samples.CQRS.Order.WebApp</RootNamespace>
-    <AssemblyName>MD.Samples.CQRS.Order.WebApp</AssemblyName>
+    <RootNamespace>MD.Samples.CQRS.Orders.WebApp</RootNamespace>
+    <AssemblyName>MD.Samples.CQRS.Orders.WebApp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <FileUpgradeFlags>
@@ -43,7 +43,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\x86\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -51,16 +51,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core">
-      <HintPath>..\Libs\nservicebus\containers\castle\Castle.Core.dll</HintPath>
+      <HintPath>..\Libs\castle\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Castle.DynamicProxy2">
-      <HintPath>..\Libs\nservicebus\containers\castle\Castle.DynamicProxy2.dll</HintPath>
+      <HintPath>..\Libs\castle\Castle.DynamicProxy2.dll</HintPath>
     </Reference>
     <Reference Include="Castle.MicroKernel">
-      <HintPath>..\Libs\nservicebus\containers\castle\Castle.MicroKernel.dll</HintPath>
+      <HintPath>..\Libs\castle\Castle.MicroKernel.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Windsor">
-      <HintPath>..\Libs\nservicebus\containers\castle\Castle.Windsor.dll</HintPath>
+      <HintPath>..\Libs\castle\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="HbmXsd">
+      <HintPath>..\Libs\nhibernate\HbmXsd.exe</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\Libs\nhibernate\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -68,6 +74,12 @@
     </Reference>
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\Libs\microsoft\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\Libs\nhibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle">
+      <HintPath>..\Libs\castle\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus, Version=2.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -183,6 +195,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{59D5135D-6753-4728-9E80-793FF827F46C}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\Messages\Messages.csproj">
       <Project>{0A6F4CC3-5E28-4542-A607-C1C3B8FA1940}</Project>

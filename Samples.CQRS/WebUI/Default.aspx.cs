@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.UI;
 
-namespace MD.Samples.CQRS.Order.WebApp
+namespace MD.Samples.CQRS.Orders.WebApp
 {
     public partial class _Default : Page
     {

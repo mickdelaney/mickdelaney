@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MD.Samples.CQRS.Order.WebApp.Controllers
+namespace MD.Samples.CQRS.Orders.WebApp.Controllers
 {
     [HandleError]
     public class HomeController : Controller

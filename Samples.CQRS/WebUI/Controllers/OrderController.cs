@@ -5,12 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using NServiceBus;
-using MD.Samples.CQRS.Order.Messages;
+using MD.Samples.CQRS.Orders.Messages;
 using MD.Mvc2.WebApp.Models;
-using MD.Samples.CQRS.Order.WebApp.Controllers;
+using MD.Samples.CQRS.Orders.WebApp.Controllers;
 using MD.Mvc2.WebApp.Core;
-using MD.Samples.CQRS.Order.Domain;
-using MD.Samples.CQRS.Order.Query;
+using MD.Samples.CQRS.Orders.Domain;
+using MD.Samples.CQRS.Orders.Query;
 
 namespace MD.Mvc2.WebApp.Controllers
 {
