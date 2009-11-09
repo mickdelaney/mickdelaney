@@ -1,0 +1,15 @@
+build
+_ReSharper.*
+*.csproj.user
+*.resharper.user
+*.resharper
+*.suo
+*.cache
+*.log
+~$*
+obj/
+Obj/
+bin/
+Bin/
+*.idea.*	
+	
