@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebUI\WebApp.csproj", "{1FD0B606-0A00-4285-82F3-915F8D391639}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9EA66ADC-B15A-4D69-8077-7AAB6E0C96BA} = {9EA66ADC-B15A-4D69-8077-7AAB6E0C96BA}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{0A6F4CC3-5E28-4542-A607-C1C3B8FA1940}"
 EndProject
@@ -75,7 +78,7 @@ Global
 		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Debug|Any CPU.Build.0 = Debug|x86
 		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Debug|x86.ActiveCfg = Debug|x86
 		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FA3F65E-18D8-4555-8BE6-6E87AFC6D30E}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
@@ -85,7 +88,7 @@ Global
 		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Debug|Any CPU.Build.0 = Debug|x86
 		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Debug|x86.ActiveCfg = Debug|x86
 		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D40D89BA-1561-4FB0-8DC7-589DA6667BEA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU

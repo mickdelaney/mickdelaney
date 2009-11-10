@@ -43,13 +43,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>Bin\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <PlatformTarget>x86</PlatformTarget>
     <OutputPath>bin\x86\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\Libs\nhibernate\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\Libs\castle\Castle.Core.dll</HintPath>
     </Reference>
@@ -141,6 +144,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Core\ControllerExtensions.cs" />
     <Compile Include="Core\PassParametersDuringRedirectAttribute.cs" />
     <Compile Include="Core\RedirectToRouteResult.cs" />
@@ -152,6 +156,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateProductCommand.cs" />
     <Compile Include="Models\OrderCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\WindsorControllerFactory.cs" />
@@ -162,6 +167,7 @@
     <Content Include="Views\Order\Create.aspx" />
     <Content Include="Views\Order\Details.aspx" />
     <Content Include="Views\Order\Index.aspx" />
+    <Content Include="Views\Product\Create.aspx" />
     <Content Include="Web.config" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.3.2.js" />
@@ -190,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

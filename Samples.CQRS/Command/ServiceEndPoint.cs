@@ -18,8 +18,8 @@ namespace MD.Samples.CQRS.Orders.Command
         public void Init()
         {
             _container = new WindsorContainer();
-            
-            var sessionFactory = SqliteConfigurator.GetSessionFactory(typeof(OrderRepository).Assembly);
+
+            var sessionFactory = SqliteConfigurator.GetSessionFactory("CommandDb.db", typeof(OrderRepository).Assembly);
 
             _container.Register
             (

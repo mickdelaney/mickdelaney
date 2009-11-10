@@ -13,13 +13,14 @@ using NHibernate;
 using MD.Samples.CQRS.Infrastructure;
 using MD.Samples.CQRS.Orders.Domain;
 using Castle.MicroKernel.Registration;
+using MD.Samples.CQRS.Orders.Query;
 
 namespace MD.Samples.CQRS.Orders.WebApp
 {
-    public class MvcApplication : HttpApplication, IContainerAccessor
+    public class Global : HttpApplication, IContainerAccessor
     {
         protected IWindsorContainer _container;
-        
+
         public IWindsorContainer Container
         {
             get { return _container; }
@@ -27,7 +28,7 @@ namespace MD.Samples.CQRS.Orders.WebApp
 
         public static IBus Bus { get; private set; }
 
-        public MvcApplication()
+        public Global()
         {
             BeginRequest += MvcApplication_BeginRequest;
             EndRequest += MvcApplication_EndRequest;
@@ -42,6 +43,7 @@ namespace MD.Samples.CQRS.Orders.WebApp
 
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Home", action = "Index", id = "" });
         }
@@ -60,9 +62,14 @@ namespace MD.Samples.CQRS.Orders.WebApp
             _container.RegisterControllers(typeof(HomeController).Assembly);
 
 
-            ISessionFactory sessionFactory = SqliteConfigurator.GetSessionFactory(typeof(OrderRepository).Assembly);
-            _container.Register(Component.For<ISessionFactory>().Instance(sessionFactory));
-                           
+            ISessionFactory sessionFactory = SqlServerConfigurator.GetSessionFactory(true, typeof(OrderRepository).Assembly);
+
+            _container.Register
+            (
+                Component.For<ISessionFactory>().Instance(sessionFactory),
+                Component.For<OrderQuery>()
+            );
+
 
 
             var factory = new WindsorControllerFactory(Container);

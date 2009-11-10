@@ -16,11 +16,9 @@ namespace MD.Samples.CQRS.Infrastructure
 {
     public class SqliteConfigurator
     {
-        public static ISessionFactory GetSessionFactory(params Assembly[] assembliesWithMappings)
+        public static ISessionFactory GetSessionFactory(string dbName, params Assembly[] assembliesWithMappings)
         {
-            var dbFile = GetDbFileName();
-            EnsureDbFileNotExists(dbFile);
-
+            var dbFile = GetDbFileName(dbName);
             var _configuration = new Configuration()
             .SetProperty(Environment.ReleaseConnections, "on_close")
             .SetProperty(Environment.Dialect, typeof(SQLiteDialect).AssemblyQualifiedName)
@@ -39,21 +37,14 @@ namespace MD.Samples.CQRS.Infrastructure
             return _configuration.BuildSessionFactory();
         }
 
-        private static string GetDbFileName()
+        private static string GetDbFileName(string dbName)
         {
-            var path = Path.GetFullPath(Path.GetRandomFileName() + ".Test.db");
+            var path = Path.GetFullPath(string.Format(@"c:\data\{0}", dbName));
             if (!File.Exists(path))
             {
-                return path;
+                File.Create(path);
             }
-            return GetDbFileName();
-        }
-        private static void EnsureDbFileNotExists(string dbFile)
-        {
-            if (File.Exists(dbFile))
-            {
-                File.Delete(dbFile);
-            }
+            return path;
         }
     }
 }

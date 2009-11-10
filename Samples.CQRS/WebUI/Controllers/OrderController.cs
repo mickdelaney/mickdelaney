@@ -56,6 +56,9 @@ namespace MD.Mvc2.WebApp.Controllers
             {
                 var token = Guid.NewGuid();
                 _bus.Send(new OrderPlacedMessage { OrderId = token, EmailAddress = command.EmailAddress, Product = command.Product });
+
+
+
                 return this.RedirectToAction<OrderController>(c => c.Details(token));
             }
             catch

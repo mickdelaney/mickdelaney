@@ -5,9 +5,9 @@ using System.Text;
 
 namespace MD.Samples.CQRS.Orders.Domain
 {
-    public class Order : Entity
+    public class Product : Entity
     {
-        public virtual User Customer { get; set; }
-        public virtual List<Product> Products { get; set; }
+        public virtual string Name { get; set; }
+        public virtual double Price { get; set; }
     }
 }
