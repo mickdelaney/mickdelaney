@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 
-namespace MD.Mvc2.WebApp.Models
+namespace MD.Samples.CQRS.WebApp.Models
 {
     public class OrderCommand
     {

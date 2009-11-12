@@ -17,7 +17,7 @@ namespace MD.Samples.CQRS.Orders.Query
             _sessionFactory = sessionFactory;
         }
 
-        public List<Product> GetOrders()
+        public List<Product> GetProducts()
         {
             var session = _sessionFactory.OpenSession();
             return session.Linq<Product>().ToList();
@@ -28,5 +28,6 @@ namespace MD.Samples.CQRS.Orders.Query
             var session = _sessionFactory.OpenSession();
             return session.Linq<Product>().Where(p => p.Id == id).FirstOrDefault();
         }
+
     }
 }

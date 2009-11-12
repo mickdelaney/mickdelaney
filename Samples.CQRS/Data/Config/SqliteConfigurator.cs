@@ -12,7 +12,7 @@ using NHibernate.Connection;
 using NHibernate.ByteCode.Castle;
 using System.IO;
 
-namespace MD.Samples.CQRS.Infrastructure
+namespace MD.Samples.CQRS.Data
 {
     public class SqliteConfigurator
     {

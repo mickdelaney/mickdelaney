@@ -10,9 +10,9 @@ using MD.Mvc2.WebApp;
 using MD.Mvc2.WebApp.Core;
 using MD.Samples.CQRS.Orders.WebApp.Controllers;
 using NHibernate;
-using MD.Samples.CQRS.Infrastructure;
 using MD.Samples.CQRS.Orders.Domain;
 using Castle.MicroKernel.Registration;
+using MD.Samples.CQRS.Data;
 using MD.Samples.CQRS.Orders.Query;
 
 namespace MD.Samples.CQRS.Orders.WebApp
@@ -62,12 +62,14 @@ namespace MD.Samples.CQRS.Orders.WebApp
             _container.RegisterControllers(typeof(HomeController).Assembly);
 
 
-            ISessionFactory sessionFactory = SqlServerConfigurator.GetSessionFactory(true, typeof(OrderRepository).Assembly);
+            ISessionFactory sessionFactory = SqlServerConfigurator.GetSessionFactory(false, typeof(OrderRepository).Assembly);
 
             _container.Register
             (
                 Component.For<ISessionFactory>().Instance(sessionFactory),
-                Component.For<OrderQuery>()
+                Component.For<OrderQuery>(),
+                Component.For<CartQuery>(),
+                Component.For<ProductQuery>()
             );
 
 

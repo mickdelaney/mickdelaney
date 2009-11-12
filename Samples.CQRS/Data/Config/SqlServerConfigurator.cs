@@ -7,8 +7,9 @@ using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Cfg;
 using System.Reflection;
 using NHibernate.Tool.hbm2ddl;
+using MD.Samples.CQRS.Orders.Domain;
 
-namespace MD.Samples.CQRS.Infrastructure
+namespace MD.Samples.CQRS.Data
 {
     public static class SqlServerConfigurator
     {
@@ -21,7 +22,9 @@ namespace MD.Samples.CQRS.Infrastructure
 
             foreach (var assembly in assembliesWithMappings)
             {
-                _configuration.Mappings(m => m.FluentMappings.AddFromAssembly(assembly));
+                _configuration.Mappings(m => m.FluentMappings.Add<ProductMap>());
+                _configuration.Mappings(m => m.FluentMappings.Add<OrderMap>());
+                _configuration.Mappings(m => m.FluentMappings.Add<UserMap>());
             }
 
             var cfg = _configuration.BuildConfiguration();
@@ -30,7 +33,7 @@ namespace MD.Samples.CQRS.Infrastructure
             if (export)
             {
                 ISession session = factory.OpenSession();
-                new SchemaExport(cfg).Execute(true, true, true, session.Connection, Console.Out);
+                new SchemaExport(cfg).Execute(true, true, false, session.Connection, Console.Out);
             }
 
             return factory;

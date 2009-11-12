@@ -6,11 +6,11 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using NServiceBus;
 using MD.Samples.CQRS.Orders.Messages;
-using MD.Mvc2.WebApp.Models;
 using MD.Samples.CQRS.Orders.WebApp.Controllers;
 using MD.Mvc2.WebApp.Core;
 using MD.Samples.CQRS.Orders.Domain;
 using MD.Samples.CQRS.Orders.Query;
+using MD.Samples.CQRS.WebApp.Models;
 
 namespace MD.Mvc2.WebApp.Controllers
 {
@@ -56,8 +56,6 @@ namespace MD.Mvc2.WebApp.Controllers
             {
                 var token = Guid.NewGuid();
                 _bus.Send(new OrderPlacedMessage { OrderId = token, EmailAddress = command.EmailAddress, Product = command.Product });
-
-
 
                 return this.RedirectToAction<OrderController>(c => c.Details(token));
             }

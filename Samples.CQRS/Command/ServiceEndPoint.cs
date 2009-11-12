@@ -6,8 +6,8 @@ using NServiceBus;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using MD.Samples.CQRS.Orders.Domain;
-using MD.Samples.CQRS.Infrastructure;
 using NHibernate;
+using MD.Samples.CQRS.Data;
 
 namespace MD.Samples.CQRS.Orders.Command
 {
@@ -19,10 +19,12 @@ namespace MD.Samples.CQRS.Orders.Command
         {
             _container = new WindsorContainer();
 
-            var sessionFactory = SqliteConfigurator.GetSessionFactory("CommandDb.db", typeof(OrderRepository).Assembly);
+            //var sessionFactory = SqliteConfigurator.GetSessionFactory("CommandDb.db", typeof(OrderRepository).Assembly);
+            ISessionFactory sessionFactory = SqlServerConfigurator.GetSessionFactory(false, typeof(OrderRepository).Assembly);
 
             _container.Register
             (
+                Component.For<IProductRepository>().ImplementedBy<ProductRepository>(),
                 Component.For<IOrderRepository>().ImplementedBy<OrderRepository>(),
                 Component.For<ISessionFactory>().Instance(sessionFactory)
             );

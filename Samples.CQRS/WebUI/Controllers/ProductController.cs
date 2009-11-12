@@ -9,21 +9,24 @@ using MD.Samples.CQRS.Orders.WebApp.Models;
 using NServiceBus;
 using MD.Samples.CQRS.Orders.Messages;
 using MD.Mvc2.WebApp.Core;
+using MD.Samples.CQRS.Orders.Query;
 
 namespace MD.Samples.CQRS.Orders.WebApp.Controllers
 {
     public class ProductController : Controller
     {
-         IBus _bus;
+        IBus _bus;
+        ProductQuery _products;
 
-        public ProductController(IBus bus) 
+        public ProductController(IBus bus, ProductQuery products) 
         {
             _bus = bus;
+            _products = products;
         } 
 
         public ActionResult Index()
         {
-            return View();
+            return View(_products.GetProducts());
         }
 
         //
@@ -54,7 +57,7 @@ namespace MD.Samples.CQRS.Orders.WebApp.Controllers
                 var token = Guid.NewGuid();
                 _bus.Send(new CreateProductMessage { Id = token, Name = createProduct.Name, Price = createProduct.Price });
 
-                return this.RedirectToAction<HomeController>(c => c.Index());
+                return this.RedirectToAction<ProductController>(c => c.Index());
             }
             catch
             {
