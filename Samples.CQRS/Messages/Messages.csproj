@@ -60,6 +60,9 @@
     <Compile Include="OrderPlacedMessage.cs" />
     <Compile Include="Products\ProductCreatedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop\AddToCartMessage.cs" />
+    <Compile Include="Shop\ItemAddedToCartMessage.cs" />
+    <Compile Include="Shop\SearchForProductMessage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

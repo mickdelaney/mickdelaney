@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NHibernate;
+using NHibernate.Linq;
+using MD.Samples.CQRS.Orders.Domain;
 
 namespace MD.Samples.CQRS.Orders.Query
 {
@@ -15,9 +17,9 @@ namespace MD.Samples.CQRS.Orders.Query
             _sessionFactory = sessionFactory;
         }
 
-        public List<CartItemDTO> GetCartForUser(Guid UserId)
+        public List<CartItem> GetCartForUser(Guid userId)
         {
-            return new List<CartItemDTO>();
+            return _sessionFactory.OpenSession().Linq<CartItem>().Where(c => c.UserId == userId).ToList();
         }
     }
 }

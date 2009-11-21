@@ -8,6 +8,7 @@ using FluentNHibernate.Cfg;
 using System.Reflection;
 using NHibernate.Tool.hbm2ddl;
 using MD.Samples.CQRS.Orders.Domain;
+using MD.Samples.CQRS.Data.Mappings;
 
 namespace MD.Samples.CQRS.Data
 {
@@ -25,6 +26,7 @@ namespace MD.Samples.CQRS.Data
                 _configuration.Mappings(m => m.FluentMappings.Add<ProductMap>());
                 _configuration.Mappings(m => m.FluentMappings.Add<OrderMap>());
                 _configuration.Mappings(m => m.FluentMappings.Add<UserMap>());
+                _configuration.Mappings(m => m.FluentMappings.Add<CartItemMap>());
             }
 
             var cfg = _configuration.BuildConfiguration();

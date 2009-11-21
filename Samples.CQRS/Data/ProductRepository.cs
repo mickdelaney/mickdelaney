@@ -23,5 +23,11 @@ namespace MD.Samples.CQRS.Data
             session.SaveOrUpdate(product);
             return product;
         }
+
+        public Product Get(Guid Id)
+        {
+            ISession session = _sessionFactory.OpenSession();
+            return session.Linq<Product>().Where(p => p.Id == Id).First();
+        }
     }
 }

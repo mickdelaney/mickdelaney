@@ -14,6 +14,8 @@ using MD.Samples.CQRS.Orders.Domain;
 using Castle.MicroKernel.Registration;
 using MD.Samples.CQRS.Data;
 using MD.Samples.CQRS.Orders.Query;
+using MD.Samples.CQRS.Orders.WebApp.Core;
+using Microsoft.Practices.ServiceLocation;
 
 namespace MD.Samples.CQRS.Orders.WebApp
 {
@@ -72,7 +74,9 @@ namespace MD.Samples.CQRS.Orders.WebApp
                 Component.For<ProductQuery>()
             );
 
-
+            var serviceLocator = new WindsorServiceLocator(_container);
+            _container.Register(Component.For<IServiceLocator>().Instance(serviceLocator));
+            ServiceLocator.SetLocatorProvider(() => serviceLocator);
 
             var factory = new WindsorControllerFactory(Container);
             ControllerBuilder.Current.SetControllerFactory(factory);

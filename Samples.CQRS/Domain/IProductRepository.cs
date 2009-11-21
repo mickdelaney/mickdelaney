@@ -7,6 +7,7 @@ namespace MD.Samples.CQRS.Orders.Domain
 {
     public interface IProductRepository
     {
+        Product Get(Guid Id);
         Product Save(Product product);
     }
 }

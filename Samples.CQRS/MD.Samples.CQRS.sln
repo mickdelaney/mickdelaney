@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{1599990B-6D6C-48CD-9F4C-6EB5B5D98660}"
 EndProject
+Project("{00000000-0000-0000-0000-000000000000}") = "CommandServices", "CommandServices\CommandServices.csproj", "{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -108,6 +110,16 @@ Global
 		{1599990B-6D6C-48CD-9F4C-6EB5B5D98660}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1599990B-6D6C-48CD-9F4C-6EB5B5D98660}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1599990B-6D6C-48CD-9F4C-6EB5B5D98660}.Release|x86.ActiveCfg = Release|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F7709F2E-8E6D-417A-9F57-FB2F135DFA06}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

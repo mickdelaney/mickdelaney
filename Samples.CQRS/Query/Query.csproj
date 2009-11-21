@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartItemDTO.cs" />
     <Compile Include="CartQuery.cs" />
     <Compile Include="OrderDTO.cs" />
     <Compile Include="OrderQuery.cs" />
@@ -70,6 +69,9 @@
       <Project>{59D5135D-6753-4728-9E80-793FF827F46C}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="GenerateQuery.t4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

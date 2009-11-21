@@ -103,10 +103,11 @@
     <Compile Include="Bookings\BookingSaga.cs" />
     <Compile Include="Bookings\BookingSagaData.cs" />
     <Compile Include="MessageEndpoint.cs" />
-    <Compile Include="OrderMessageHandler.cs" />
+    <Compile Include="Shop\OrderMessageHandler.cs" />
     <Compile Include="Products\CreateProductMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceEndPoint.cs" />
+    <Compile Include="Shop\AddToCartHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

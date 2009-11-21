@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartRepository.cs" />
     <Compile Include="Config\SqliteConfigurator.cs" />
     <Compile Include="Config\SqlServerConfigurator.cs" />
     <Compile Include="Mappings\CartItemMap.cs" />

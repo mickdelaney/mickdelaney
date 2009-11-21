@@ -8,14 +8,14 @@
 
     <h2>Create</h2>
     
-        <% using (Html.BeginForm()) { %>
-            <fieldset>
-                <legend>Order Details</legend>
-                <%= Html.EditorForModel() %>            
-                
-                <button type="Submit">Place Order</button>
-                
-            </fieldset>
-        <% } %>
+    <% using (Html.BeginForm()) { %>
+        <fieldset>
+            <legend>Order Details</legend>
+            <%= Html.EditorForModel() %>            
+            
+            <button type="Submit">Place Order</button>
+            
+        </fieldset>
+    <% } %>
 
 </asp:Content>

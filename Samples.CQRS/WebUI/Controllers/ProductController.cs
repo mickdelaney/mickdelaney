@@ -13,7 +13,7 @@ using MD.Samples.CQRS.Orders.Query;
 
 namespace MD.Samples.CQRS.Orders.WebApp.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : ControllerBase
     {
         IBus _bus;
         ProductQuery _products;
@@ -32,9 +32,9 @@ namespace MD.Samples.CQRS.Orders.WebApp.Controllers
         //
         // GET: /Product/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            return View(_products.Get(id));
         }
 
         //

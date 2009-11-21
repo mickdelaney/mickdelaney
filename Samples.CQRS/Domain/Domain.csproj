@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="CartItem.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="ICartRepository.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="IOrderService.cs" />
     <Compile Include="IProductRepository.cs" />

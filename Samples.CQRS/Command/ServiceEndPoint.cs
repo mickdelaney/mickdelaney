@@ -26,6 +26,7 @@ namespace MD.Samples.CQRS.Orders.Command
             (
                 Component.For<IProductRepository>().ImplementedBy<ProductRepository>(),
                 Component.For<IOrderRepository>().ImplementedBy<OrderRepository>(),
+                Component.For<ICartRepository>().ImplementedBy<CartRepository>(),
                 Component.For<ISessionFactory>().Instance(sessionFactory)
             );
 
