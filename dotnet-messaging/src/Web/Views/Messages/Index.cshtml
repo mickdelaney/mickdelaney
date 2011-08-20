@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/App/Messages.js")" type="text/javascript"></script>
+
+
+<script type="text/template" id="item-template">
+    <div class="todo">
+      <div class="display">
+        <input class="check" type="checkbox" data-id="${Id}"/>
+        <div class="todo-content">${Name}</div>
+        <span class="todo-destroy" data-id="${Id}"></span>
+      </div>
+      <div class="edit">
+        <input class="todo-input" type="text" value="${Name}" />
+      </div>
+    </div>
+</script>
+
+
+<div id="messages-app">
+
+    <div class="title">
+        <h1>Messages</h1>
+    </div>
+
+    <div class="content">
+        <div id="message-form">
+        </div>
+        
+        <div id="messages">
+            <ul id="messages-list">
+                <li>test</li>
+                <li>test2</li>
+            </ul>
+        </div>
+        
+        <div id="message-stats">
+        </div>
+    </div>
+
+</div>
