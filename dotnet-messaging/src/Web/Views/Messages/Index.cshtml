@@ -1,24 +1,56 @@
-﻿@{
+﻿@using Web.Models
+@model MessagesViewModel
+           
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script src="@Url.Content("~/Scripts/App/Messages.js")" type="text/javascript"></script>
 
+<script type="text/javascript">
+    $(function () {
 
-<script type="text/template" id="item-template">
+        var messages = new Messages;
+        var messageTypes = @Html.Raw(Model.MessageTypes.ToJson());
+        listView = new MessageListView({ collection: messages, messageTypes: messageTypes });
+
+        messages.fetch({
+            success: function (collection, response) {
+                collection.each(function (message) {
+                    console.log(message.get("Name"));
+                });
+
+                listView.render();
+            },
+            error: function (response) {
+                alert('failed');
+            }
+        });
+    });
+
+</script>
+
+<script id="item-template" type="text/x-jquery-tmpl">
     <div class="todo">
-      <div class="display">
-        <input class="check" type="checkbox" data-id="${Id}"/>
-        <div class="todo-content">${Name}</div>
-        <span class="todo-destroy" data-id="${Id}"></span>
+      <div class="display">          
+        <input class="check" type="checkbox" data-id="${Item.Id}"/>
+        <div class="todo-content">${Item.Name}</div>
+        <div class="message-type-content">${Item.MessageTypeName}</div>
+        <span class="todo-destroy" data-id="${Item.Id}"></span>
       </div>
       <div class="edit">
-        <input class="todo-input" type="text" value="${Name}" />
+        <input class="todo-input" type="text" value="${Item.Name}" />
+        <select id="Messages_${Idx}__MessageTypeId" name="Messages[${Idx}].MessageTypeId" class="message-type-input" >
+            {{tmpl(MessageTypes, { selectedId: Item.MessageTypeId }) "#titleTemplate"}}                            
+        </select>     
+        <button class="save">Save</button>
       </div>
     </div>
 </script>
-
+<script id="titleTemplate" type="text/x-jquery-tmpl">
+    <option {{if Id === $item.selectedId}}selected="selected"{{/if}} value="${Id}">${Name}</option>
+</script>    
 
 <div id="messages-app">
 

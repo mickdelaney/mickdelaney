@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -15,7 +16,9 @@ namespace Web.Controllers
                 return Json(messages, JsonRequestBehavior.AllowGet);
             }
 
-            return View(messages);
+            var viewModel = new MessagesViewModel(messages);
+
+            return View(viewModel);
         }
 
 

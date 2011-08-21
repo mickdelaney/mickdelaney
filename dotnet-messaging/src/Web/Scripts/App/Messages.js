@@ -1,8 +1,21 @@
-﻿Message = Backbone.Model.extend({
+﻿SelectItem = Backbone.Model.extend({
+    defaults: {
+        Id: "",
+		Selected: "",
+		Value: ""
+	}
+});
+SelectItems = Backbone.Collection.extend({
+    model: SelectItem
+});        
+
+Message = Backbone.Model.extend({
 	defaults: {
         Id: "",
 		Name: "",
-		Description: ""
+		Description: "",
+	    MessageTypeId: "1",
+	    MessageTypeName: ""
 	},
     toggleStatus: function() {
         
@@ -18,82 +31,77 @@ Messages = Backbone.Collection.extend({
 });
 
 MessageItemView = Backbone.View.extend({
-	tagName : "li",
-	initialize : function(){
-		this.template = $("#item-template");
-		//rescope "this" so it's available to the methods requiring it
-		_.bindAll(this,"render","toggleComplete","setStatus","clear","updateModel");
-		//bind the change event to the status toggle
-		this.model.bind("change:status",this.setStatus);
-		this.model.bind("change:name",this.render);
-	}, 
-	events : {
-		"click :checkbox" : "toggleComplete",
-		"click span.todo-destroy"   : "clear",
-		"dblclick div.todo-content" : "toggleEdit",
-		"blur .todo-input" : "updateModel"
-	},
-	render : function(){
-		var content = this.template.tmpl(this.model.toJSON());
-		$(this.el).html(content);
-		return this;
-	},
-	toggleComplete : function(){
-		this.model.toggleStatus();
-	},
-	clear : function(evt){
-		tasks.remove(this.model);
-	},
-	setStatus : function(){
-		//trigger the status change
-		this.$(".todo").toggleClass("done");
-	},
-	toggleEdit : function(){
-	  $(this.el).toggleClass("editing");
-      this.$("input").focus();
-	},
-	updateModel : function(){
-		$(this.el).toggleClass("editing");
-		this.model.set({name :  this.$(".todo-input").val()});
-	},
+    tagName: "li",
+        
+    initialize: function (options) {
+        _.bindAll(this, "render", "toggleComplete", "setStatus", "clear", "updateModel");
+        
+        this.template = $("#item-template");
+        this._messageTypes = options.messageTypes;
+        
+        this.model.bind("change:status", this.setStatus);
+        this.model.bind("change:Name", this.render);
+        this.model.bind("change:MessageTypeName", this.render);
+    },
+    events: {
+        "click :checkbox": "toggleComplete",
+        "click span.todo-destroy": "clear",
+        "click button.save": "updateModel",
+        "dblclick div.todo": "toggleEdit"
+    },
+    render: function () {
+        var model = {
+            Item: this.model.toJSON(),
+            Idx: this.model.cid,
+            MessageTypes: this._messageTypes
+        };
+
+        var content = this.template.tmpl(model);
+        $(this.el).html(content);
+        return this;
+    },
+    toggleComplete: function () {
+        this.model.toggleStatus();
+    },
+    clear: function (evt) {
+        tasks.remove(this.model);
+    },
+    setStatus: function () {
+        //trigger the status change
+        this.$(".todo").toggleClass("done");
+    },
+    toggleEdit: function () {
+        $(this.el).toggleClass("editing");
+        this.$("input").focus();
+    },
+    updateModel: function () {
+        $(this.el).toggleClass("editing");
+        var messageTypeId = this.$(".message-type-input").val();
+        var messageTypeName = this.$(".message-type-input :selected").text();
+        var message = this.$(".todo-input").val();
+        this.model.set({ Name: message, MessageTypeName: messageTypeName, MessageTypeId: messageTypeId });
+    }
 });
 
 MessageListView = Backbone.View.extend({
     el: "#messages-list",
-    initialize: function () {
+
+    initialize: function (options) {
         _.bindAll(this, "render");
+
+        this._messageTypes = options.messageTypes;
         this.collection.bind("fetch", this.render);
     },
     render: function () {
         $(this.el).empty();
         var els = [];
-        
+        var self = this; //this!!!
         this.collection.each(function (model) {
-            var view = new MessageItemView({ model: model });
+            var view = new MessageItemView({ model: model, messageTypes: self._messageTypes });
             els.push(view.render().el);
         });
         //push that array into this View's "el"
         $(this.el).append(els);
         return this;
     }
-});
-
-$(function () { 
-
-    var messages = new Messages;
-    listView = new MessageListView({collection: messages});
-
-    messages.fetch({
-        success: function (collection, response) {
-            collection.each(function (message) {
-                console.log(message.get("Name"));
-            });    
-
-            listView.render();
-        }
-    });
-
-    
-    
-
 });
