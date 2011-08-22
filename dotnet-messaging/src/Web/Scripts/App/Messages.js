@@ -21,7 +21,7 @@ Message = Backbone.Model.extend({
         
     },
 	save: function () {
-		console.log(name);
+		console.log(Name);
 	}
 });
 
@@ -84,24 +84,39 @@ MessageItemView = Backbone.View.extend({
 });
 
 MessageListView = Backbone.View.extend({
-    el: "#messages-list",
+    el: "#messages",
 
     initialize: function (options) {
-        _.bindAll(this, "render");
+        _.bindAll(this, "render", "add", "save");
 
         this._messageTypes = options.messageTypes;
         this.collection.bind("fetch", this.render);
+        this.collection.bind("add", this.render);
+    },
+    events: {
+        "click #add-new": "add",
+        "click #save": "save"
+    },
+    add: function () {
+        this.collection.add(new Message());
+    },
+    save: function () {
+        this.collection.each(function(model) {
+            model.save();
+        });
     },
     render: function () {
-        $(this.el).empty();
+        var $list = this.$('#messages-list');
+        $list.empty();
         var els = [];
         var self = this; //this!!!
         this.collection.each(function (model) {
             var view = new MessageItemView({ model: model, messageTypes: self._messageTypes });
             els.push(view.render().el);
         });
+
         //push that array into this View's "el"
-        $(this.el).append(els);
+        $list.append(els);
         return this;
     }
 });
